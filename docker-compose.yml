@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     image: pubsub:latest
-    command: gunicorn pubsub.wsgi:application --bind 0.0.0.0:8000
+    entrypoint: ./entrypoint.sh
     ports:
       - 8000:8000
     env_file:

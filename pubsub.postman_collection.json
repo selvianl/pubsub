@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "172936c9-1475-4efe-b817-7040b2a5d19d",
+		"name": "pubsub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pub",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"food_id\": \"1\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/order/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sub",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/order/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/order/list/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"list",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json();",
+							"pm.environment.set(\"access_token\", res.access);",
+							"pm.environment.set(\"refresh_token\", res.refresh);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"root\",\n    \"password\": \"toor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/jwt/token/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"jwt",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json();",
+							"pm.environment.set(\"access_token\", res.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh\":\"{{refresh_token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/jwt/token/refresh/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"jwt",
+						"token",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Expired",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\":\"{{access_token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/jwt/token/verify/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"jwt",
+						"token",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

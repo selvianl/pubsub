@@ -8,7 +8,10 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from pubsub.settings import pub
 
-from api.models import Food, Order, OrderStateEnum, Restaurant, RestaurantCategory
+from api.models import (
+    Food, Order, OrderStateEnum,
+    Restaurant, RestaurantCategory
+)
 
 AUTH_USER_MODEL = User
 

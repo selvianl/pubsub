@@ -17,15 +17,24 @@ class OrderStateEnum(Enum):
 class RestaurantCategory(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     category = models.ForeignKey(RestaurantCategory, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return self.name
+
 
 class Food(models.Model):
     name = models.CharField(max_length=255)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
